@@ -45,7 +45,7 @@ DB_USER=job_user
 DB_PASS=qt5RNOiarVoZ4nKl
 ```
 
-### 4️⃣ Run the Server:"
+### 4️⃣ Run the Server:
 
 ```
 nodemon index.js
