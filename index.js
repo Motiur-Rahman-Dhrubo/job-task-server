@@ -3,6 +3,7 @@ const app = express();
 const cors = require("cors");
 require("dotenv").config();
 const port = process.env.PORT || 5000;
+const { ObjectId } = require("mongodb");
 
 // middleware
 app.use(cors());
@@ -32,6 +33,43 @@ async function run() {
 
     const userCollection = client.db("jobTaskDB").collection("user");
     const taskCollection = client.db("jobTaskDB").collection("task");
+
+
+
+    app.get("/my-tasks", async (req, res) => {
+      const email = req.query.email;
+      const query = { user_email: email };
+      const result = await taskCollection.find(query).toArray();
+      res.send(result);
+    });
+
+
+    app.delete("/task/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: new ObjectId(id) };
+      const result = await taskCollection.deleteOne(query);
+      res.send(result);
+    });
+
+    app.put("/task/:id", async (req, res) => {
+      const id = req.params.id;
+      const updatedTask = req.body;
+
+      const filter = { _id: new ObjectId(id) };
+      const updateDoc = {
+        $set: {
+          TaskTitle: updatedTask.TaskTitle,
+          TaskDescription: updatedTask.TaskDescription,
+          Category: updatedTask.Category,
+        },
+      };
+
+      const result = await taskCollection.updateOne(filter, updateDoc);
+      res.send(result);
+    });
+
+
+
 
     app.post("/task", async (req, res) => {
       const task = req.body;
