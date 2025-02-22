@@ -63,9 +63,9 @@ The server should be running on http://localhost:5000
 
 ## 📌 Core Features:
 
-- ✅ Add new tasks
-- ✅ Edit tasks
-- ✅ Delete tasks
-- ✅ Categorize tasks into different sections
-- ✅ API with RESTful endpoints
-- ✅ Persistent data storage using MongoDB
+✅ Add new tasks <br>
+✅ Edit tasks <br>
+✅ Delete tasks <br>
+✅ Categorize tasks into different sections <br>
+✅ API with RESTful endpoints <br>
+✅ Persistent data storage using MongoDB
